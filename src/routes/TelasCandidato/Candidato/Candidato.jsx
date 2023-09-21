@@ -42,6 +42,7 @@ const Candidato = () => {
               width: "100%",
               marginBottom: "20px",
               height: "100px",
+              border: "none",
             }}
           />
         </div>
