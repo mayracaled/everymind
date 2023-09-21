@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../Button";
-
 import "./style.css";
 
-export const BigCard = ({}) => {
+export const BigCard = () => {
+  const [cardState, setCardState] = useState("em andamento");
+
+  const handleButtonClick = () => {
+    if (cardState === "em andamento") {
+      setCardState("aguardando");
+    } else if (cardState === "aguardando") {
+      setCardState("finalizado");
+    } else {
+      setCardState("em andamento");
+    }
+  };
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -18,14 +29,20 @@ export const BigCard = ({}) => {
             labelClassName="button-2"
             size="m"
             state="enabled"
-            text="Em andamento"
+            text={
+              cardState === "em andamento"
+                ? "Em Andamento"
+                : cardState === "aguardando"
+                ? "Aguardando"
+                : "Finalizado"
+            }
             variant="contained"
             background="none"
+            onClick={handleButtonClick}
           />
-
           <div className="icon-button-wrapper"></div>
         </div>
-      </div>{" "}
+      </div>
     </div>
   );
 };
